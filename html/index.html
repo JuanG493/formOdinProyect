@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="icon" href="../css/Picco.png">
+    <title>Eco Hotel</title>
+</head>
+
+<body>
+    <div class="first">
+        <div>
+            <div class="first_logo">
+                <img id="logop" src="../css/odin-lined.png" alt="logo nature">
+                <p class="first_hotel" id="eco-hotel">ECO HOTEL </p>
+            </div>
+        </div>
+        <img src="../css/eco-hotel.jpg" alt="road image" class="first_img">
+        <span class="first_pie">Photo by 
+            <a href="https://github.com/JuanG493">Juan David Guarin</a>
+        </span>
+    </div>
+
+
+    <div class="second">
+        <div class="second_first">
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Harum velit perspiciatis veritatis ratione quas
+                similique quam facere officia, delectus sint laborum, atque sequi. Rerum necessitatibus officia aliquid
+                quo
+                debitis nulla!</p>
+        </div>
+        <form class="second_second">
+            <legend>let´s do this!</legend>
+            <fieldset class="name">
+                <div class="name_first">
+                    <label for="form_name">First Name</label>
+                    <input maxlength="15" required type="text" pattern="[A-Z,a-z\s]{3,}" id="form_name">
+                </div>
+                <div class="name_last">
+                    <label for="form_lastName">Last Name</label>
+                    <input maxlength="15" required type="text" id="form_lastName">
+                </div>
+            </fieldset>
+            <fieldset class="contact">
+                <div class="contact_mail">
+                    <label for="form_email">Email</label>
+                    <input required type="email" id="form_email"
+                        title="Please enter a valid mail, example admin@gmail.com">
+                </div>
+                <div class="contact_phone">
+                    <label for="form_phoneNum">Phone Number</label>
+                    <input type="tel" id="form_phoneNum" required>
+                </div>
+            </fieldset>
+
+            <fieldset class="password">
+                <div class="password_one">
+                    <label for="form_password">Password</label>
+                    <input required type="text" id="password_one"
+                        title="the password must have 8 characters it can be letter or digit and need to have at least one of the follow characters (*, @)">
+                    <div>
+                        <button class="show" id="show-one" type="button"
+                            onclick="showpass('password_one')">show</button>
+                    </div>
+                </div>
+                <div class="password_two">
+                    <label for="form_confirmPassword">Confirm password</label>
+                    <input required type="text" id="password_two" name="user_pass" class="user_pass"
+                        title="must have 8 characters, need at least one letter(uppercase or lowercase) will have digit or any specialchar">
+                    <span class="remark"></span>
+                    <div>
+                        <button class="show" id='show-two' type="button"
+                            onclick="showpass('password_two')">show</button>
+                    </div>
+                </div>
+            </fieldset>
+            <div id="following">
+                <ol>
+                    <li class="follow_one">uppercase</li>
+                    <li class="follow_two">special character</li>
+                    <li class="follow_three">8 lenght</li>
+                </ol>
+
+            </div>
+        </form>
+        <div class="second_last">
+            <div class="account">
+                <button type="submit">Create Account</button>
+                <p>already have an account? <a href="#">log in</a></p>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    </div>
+
+    <script>
+        let one_password = document.querySelector("#password_one");
+        let two_password = document.querySelector("#password_two")
+        let remark = document.querySelector('.remark');
+        let follow_one = document.querySelector('.follow_one');
+        let follow_two = document.querySelector('.follow_two');
+        let follow_three = document.querySelector('.follow_three');
+        let show_buttons = document.querySelectorAll('.show');
+        let patternReg = new RegExp(/(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/);
+        let comparison = "";
+
+        one_password.addEventListener("input", function (event) {
+            one_password.type = "password";
+            let testing = one_password.value;
+            comparison = testing;
+            let testingValue = patternReg.test(testing);
+
+            if (testing.length >= 1) {
+                let lastChart = testing[testing.length - 1];
+
+                if (lastChart == testing.toUpperCase()) {
+                    console.log("mayu");
+                    follow_one.classList.add('having');
+                }
+                if (lastChart.match(/[*@.,+|\-°?¡¿_'~]+/gi)) {
+                    follow_two.classList.add('having');
+                }
+
+                if (testing.length == 8) {
+                    follow_three.classList.add('having')
+                }
+
+            } else {
+                follow_one.classList.remove('having');
+                follow_two.classList.remove('having');
+                follow_three.classList.remove('having');
+            }
+
+            if (testingValue) {
+                one_password.classList.add('valid_field')
+                two_password.classList.remove('user_pass');
+            } else {
+                two_password.classList.add('user_pass');
+            }
+        });
+
+
+        two_password.addEventListener("input", function (event) {
+            two_password.type = "password";
+            let testing = two_password.value;
+            let testingValue = patternReg.test(testing);
+
+            if (testingValue) {
+                if (comparison == testing) {
+                    two_password.classList.add('valid_field');
+                    remark.classList.remove('no_match')
+                }
+            } else {
+                remark.classList.add('no_match')
+            }
+
+        });
+
+        function showpass(password) {
+            var tipo = document.getElementById(password);
+            if (tipo.type == "password") {
+                tipo.type = "text";
+            } else {
+                tipo.type = "password";
+            }
+        }
+
+        show_buttons.forEach(element => {
+            element.addEventListener('click', function () {
+                element.classList.toggle('working')
+            })
+
+        });
+
+    </script>
+</body>
+</html>

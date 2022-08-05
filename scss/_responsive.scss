@@ -1,0 +1,71 @@
+@include media-sm {
+
+    .first_logo {
+        flex-wrap: wrap;
+
+    }
+
+    .first_hotel {
+        font-size: 2rem;
+    }
+
+
+
+    span.first_pie {
+        font-size: 9px;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        width: 10rem;
+        height: 100 vh;
+
+        a {
+            font-size: 12px;
+        }
+    }
+
+    div.second_first {
+        font-size: 12px;
+        font-weight: 100;
+    }
+
+    form.second_second {
+        align-self: center;
+        align-items: center;
+        font-size: 12px;
+        font-weight: 100;
+    }
+
+
+    div#following {
+        color: rgba(255, 255, 255, 0);
+    }
+
+    div.second_last {
+        align-items: center;
+        align-self: flex-end;
+        top: -1px;
+
+    }
+
+
+}
+
+
+@include media-md {
+    div.second_first{
+        width: 80%;
+    }
+
+
+    div#following {
+        color: rgba(255, 255, 255, 0);
+    }
+
+    div.second_last{
+        align-items: center;
+        align-self: center;
+    }
+}
