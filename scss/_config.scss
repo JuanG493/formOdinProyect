@@ -1,0 +1,30 @@
+$primary-color: 	#E3DAC9;
+$secundary-color:#596D48;
+$input-color: #E5E7EB;
+
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+} 
+
+@mixin media-sm {
+  @media (max-width: 530px) {
+    @content;
+  }
+}
+
+@mixin media-md {
+  @media (max-width: 1185px) {
+    @content;
+  }
+}
+
+
+
+@mixin media-xl {
+  @media (min-width: 1600px) {
+    @content;
+  }
+}
